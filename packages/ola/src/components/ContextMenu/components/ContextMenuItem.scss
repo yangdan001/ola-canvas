@@ -1,0 +1,20 @@
+.ola {
+  .ola-context-menu-item {
+    padding: 0 16px;
+    line-height: 22px;
+    font-size: 12px;
+    cursor: default;
+    &:hover {
+      color: #fff;
+      background-color: #0f8fff;
+    }
+    &.ola-is-disable {
+      color: #ccc;
+      pointer-events: none;
+      &:hover {
+        color: #ccc;
+        background-color: transparent;
+      }
+    }
+  }
+}

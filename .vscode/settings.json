@@ -1,0 +1,20 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "cSpell.words": [
+    "bbox",
+    "bboxes",
+    "bboxs",
+    "clonedeep",
+    "Dists",
+    "Formatjs",
+    "IRGBA",
+    "isequal",
+    "outfile",
+    "ola",
+    "xigua"
+  ]
+}
