@@ -35,7 +35,7 @@ jobs:
       - name: build static files
         # Treating warnings as errors because process.env.CI = true.
         # 暂时不处理 eslint 的 warn，改成 false
-        run: PUBLIC_URL=/app/suika pnpm run all:build
+        run: PUBLIC_URL=/app/ola pnpm run all:build
 
       # 部署到自己的服务器
       - name: deploy file to server
@@ -44,5 +44,5 @@ jobs:
           username: ${{ secrets.USERNAME }}
           server: ${{ secrets.REMOTE_IP }}
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          local_path: './packages/suika/build/*'
+          local_path: './packages/ola/build/*'
           remote_path: ${{ secrets.DIR }}
