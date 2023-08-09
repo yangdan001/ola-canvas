@@ -22,7 +22,7 @@ export function useBackend() {
   const update = () => setData({ ...root.model });
 
   useEffect(() => {
-    console.log(data,'oooo');
+    console.log(data);
   }, [data]);
 
   return {

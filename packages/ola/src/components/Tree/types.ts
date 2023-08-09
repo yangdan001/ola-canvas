@@ -27,6 +27,7 @@ export type Node<T = unknown> = {
   isDraggable: boolean;
   isDroppable: boolean;
   rowIndex: number | null;
+  foundIndex?: number | null;
 };
 
 export type NodesById<T> = { [id: string]: Node<T> };
@@ -124,6 +125,7 @@ export interface TreeProps<T extends IdObj> {
   rowHeight?: number;
   width?: number;
   height?: number;
+  foundIndex?: number | null;
 }
 
 export type TreeProviderProps<T extends IdObj> = {

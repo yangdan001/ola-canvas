@@ -1,7 +1,10 @@
 import "./example.css";
-import { GotLineage } from "./got";
-
-export default function App() {
+import  GotLineage  from "./got";
+interface ExampleProps {
+    foundIndex: number;
+}
+// export default function App(foundIndex: number) {
+const Example: React.FC<ExampleProps> = ({ foundIndex }) => {
   const code = `
 <Tree
   ref={(tree: TreeApi) => {
@@ -33,7 +36,7 @@ export default function App() {
         {/* <h1 draggable>React Arborist</h1> */}
 
         <section className="got-lineage">
-          <GotLineage />
+          <GotLineage foundIndex={foundIndex} />
         </section>
         {/* <code>
           <pre>{code}</pre>
@@ -42,3 +45,5 @@ export default function App() {
     </div>
   );
 }
+
+export default Example

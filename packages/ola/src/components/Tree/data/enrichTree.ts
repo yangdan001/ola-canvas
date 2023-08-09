@@ -7,7 +7,7 @@ function createNode<T extends IdObj>(
   children: Node<T>[] | null,
   isOpen: boolean,
   isDraggable: boolean,
-  isDroppable: boolean
+  isDroppable: boolean,
 ): Node<T> {
   return {
     id: model.id,
@@ -39,7 +39,8 @@ function enrichTree<T extends IdObj>(
   isOpen: TreeProps<T>["isOpen"] = "isOpen",
   disableDrag: TreeProps<T>["disableDrag"] = false,
   disableDrop: TreeProps<T>["disableDrop"] = false,
-  openByDefault = true
+  openByDefault = true,
+  foundIndex:TreeProps<T>["foundIndex"]
 ): Node<T> {
   function traverse(model: T, level: number, parent: Node<T> | null) {
     const open = access(model, isOpen) as boolean;

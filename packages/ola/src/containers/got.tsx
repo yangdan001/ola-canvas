@@ -5,8 +5,12 @@ import AutoSize from "react-virtualized-auto-sizer";
 import { Tree, TreeApi } from "../components/Tree/index";
 import { Node } from "./node";
 import { MyData, useBackend } from "./backend";
-
-export function GotLineage() {
+interface ExampleProps {
+  foundIndex: number;
+  // Other props of the Example component
+}
+// export function GotLineage() {
+const GotLineage: React.FC<ExampleProps> = ({ foundIndex }) => {
   const backend = useBackend();
   const rootElement = useRef<HTMLDivElement | null>(null);
   return (
@@ -32,9 +36,12 @@ export function GotLineage() {
             rowHeight={22}
             width={props.width}
             height={props.height}
-            onClick={() => console.log("clicked the tree")}
+            onClick={(e) => 
+              console.log(e,backend,"clicked the tree")
+            }
             onContextMenu={() => console.log("context menu the tree")}
             dndRootElement={undefined}
+            foundIndex={foundIndex}
           >
             {Node}
           </Tree>
@@ -43,3 +50,4 @@ export function GotLineage() {
     </div>
   );
 }
+export default GotLineage

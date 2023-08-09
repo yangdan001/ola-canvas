@@ -84,7 +84,9 @@ export const Node = ({
       ref={innerRef}
       style={styles.row}
       className={classNames("row", state)}
-      onClick={(e) => handlers.select(e, { selectOnClick: true })}
+      onClick={(e) => 
+        handlers.select(e, { selectOnClick: true })
+      }
     >
       <div className="row-contents" style={styles.indent}>
         <MaybeToggleButton
@@ -99,7 +101,7 @@ export const Node = ({
         {state.isEditing ? (
           <RenameForm defaultValue={name} {...handlers} />
         ) : (
-          <span>
+        <span data-layer-id={data.id}>
             {name}{" "}
             {state.isSelected && (
               <button style={{ display: "inline" }} onClick={handlers.edit}>

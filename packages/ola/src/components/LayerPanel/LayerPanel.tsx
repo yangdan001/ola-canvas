@@ -11,7 +11,6 @@ export const LayerPanel: FC = () => {
 
   useEffect(() => {
     if (editor) {
-      console.log(editor,'editor111')
       setObjects(editor.sceneGraph.getObjects()); // init
 
       editor.sceneGraph.on('render', () => {
@@ -37,7 +36,7 @@ export const LayerPanel: FC = () => {
       }
     }
   };
-
+  const foundIndex = objects.findIndex((obj) => selectedIds.has(obj.id));
   return (
     <div className="layer-panel" onClick={(e) => handleClick(e)}>
       {/* {objects
@@ -52,7 +51,7 @@ export const LayerPanel: FC = () => {
           </LayerItem>
         ))
         .reverse()} */}
-        <Example />
+        <Example foundIndex={foundIndex} />
     </div>
   );
 };

@@ -20,7 +20,8 @@ export const Tree = forwardRef(
           props.isOpen,
           props.disableDrag,
           props.disableDrop,
-          props.openByDefault
+          props.openByDefault,
+          props.foundIndex,
         ),
       [
         props.data,
@@ -29,7 +30,8 @@ export const Tree = forwardRef(
         props.isOpen,
         props.disableDrag,
         props.disableDrop,
-        props.openByDefault
+        props.openByDefault,
+        props.foundIndex,
       ]
     );
 
@@ -40,7 +42,7 @@ export const Tree = forwardRef(
           options={{ rootElement: props?.dndRootElement }}
         >
           <OuterDrop>
-            <List className={props.className} />
+            <List className={props.className}  foundIndex={props.foundIndex} />
           </OuterDrop>
           <Preview />
         </DndProvider>

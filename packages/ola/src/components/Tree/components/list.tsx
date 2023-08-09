@@ -3,7 +3,7 @@ import { useTreeApi } from "../context";
 import Row from "./row";
 import ListOuterElement from "./list-outer-element";
 
-function List(props: { className?: string }) {
+function List(props: { className?: string,foundIndex?: number | null }) {
   const tree = useTreeApi();
   return (
     <div style={{ height: tree.height, width: tree.width, overflow: "hidden" }}>
@@ -18,7 +18,10 @@ function List(props: { className?: string }) {
         outerElementType={ListOuterElement}
         ref={tree.list}
       >
-        {Row}
+        {/* {Row} */}
+        {({ index, style }) => (
+          <Row index={index} style={style} foundIndex={props.foundIndex} />
+        )}
       </FixedSizeList>
     </div>
   );

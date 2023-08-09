@@ -14,6 +14,7 @@ import {
 } from "./types";
 import { Selection } from "./selection/selection";
 import { noop } from "./utils";
+let lastIndex: number | null = null;
 
 const getIds = memoizeOne((nodes: Node[]) => nodes.map((n) => n.id));
 const createIndex = memoizeOne((nodes: Node[]) => {
@@ -93,9 +94,11 @@ export class TreeApi<T extends IdObj> {
     if (resolve) return resolve(value);
     this.edits.delete(id);
   }
-
   select(index: number | null, meta = false, shift = false) {
-    this.dispatch(actions.select(index, meta, shift));
+    if(lastIndex!=index){
+      this.dispatch(actions.select(index, meta, shift))
+      lastIndex=index
+    }
   }
 
   selectById(id: string | number, meta = false, shift = false) {

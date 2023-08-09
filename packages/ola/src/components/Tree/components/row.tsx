@@ -1,4 +1,4 @@
-import React, { CSSProperties, useCallback, useMemo, useRef } from "react";
+import React, { CSSProperties, useCallback, useMemo, useRef,useEffect,useState } from "react";
 import { useTreeApi } from "../context";
 import { useDragHook } from "../dnd/drag-hook";
 import { useDropHook } from "../dnd/drop-hook";
@@ -7,13 +7,16 @@ import { IdObj } from "../types";
 type Props = {
   style: CSSProperties;
   index: number;
+  foundIndex?: number | null;
 };
 
-const Row = React.memo(<T extends IdObj>({ index, style }: Props) => {
+const Row = React.memo(<T extends IdObj>({ index, style, foundIndex }: Props) => {
   const realTree = useTreeApi<T>();
   const tree = useMemo(() => realTree, []);
-  tree.sync(realTree);
+  const initialIndex = foundIndex !== undefined ? foundIndex : null;
+  const propsIndex = useRef<number | null>(initialIndex);
 
+  tree.sync(realTree);
   const node = tree.visibleNodes[index];
   const prev = tree.visibleNodes[index - 1] || null;
   const next = tree.visibleNodes[index + 1] || null;
@@ -30,7 +33,11 @@ const Row = React.memo(<T extends IdObj>({ index, style }: Props) => {
   const isOverFolder = node.id === tree.cursorParentId && tree.cursorOverFolder;
   const isOpen = node.isOpen;
   const indent = tree.indent * node.level;
-
+  useMemo(() => {
+    if (propsIndex.current !== null && propsIndex.current !== -1 ) {
+      tree.select(propsIndex.current, false, false);
+    }
+  }, [propsIndex.current]);
   const state = useMemo(() => {
     return {
       isEditing,
@@ -78,8 +85,12 @@ const Row = React.memo(<T extends IdObj>({ index, style }: Props) => {
         if (node.rowIndex === null) return;
         if (args.selectOnClick === null) return;
         if (args.selectOnClick || e.metaKey || e.shiftKey) {
+          // eslint-disable-next-line no-debugger
+    debugger
           tree.select(node.rowIndex, e.metaKey, e.shiftKey);
         } else {
+          // eslint-disable-next-line no-debugger
+    debugger
           tree.select(null, false, false);
         }
       },
