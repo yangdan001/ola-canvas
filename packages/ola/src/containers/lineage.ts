@@ -1,5 +1,5 @@
 import { makeTree } from "./make-tree";
-
+const gotData = localStorage.getItem('objectsString') || '';
 const gotLineage = `House Arryn
  Jon
   Robin
@@ -51,4 +51,4 @@ House Martell
  Oberyn
   Sand Snakes`;
 
-export default makeTree(gotLineage, true);
+  export default makeTree(gotData, true);

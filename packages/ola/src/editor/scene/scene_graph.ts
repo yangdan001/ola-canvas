@@ -389,6 +389,12 @@ export class SceneGraph {
     forEach(children, (item) => {
       objects.push({ id: item.id, name: item.objectName });
     });
+    const object:string[] = []
+    forEach(children, (item) => {
+      object.push(JSON.stringify({ id: item.id, name: item.objectName }));
+    });
+    const objectString: string = object.join('\n')
+    localStorage.setItem('objectsString', objectString);
     return objects;
   }
 

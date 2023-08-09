@@ -8,10 +8,10 @@ export const LayerPanel: FC = () => {
   const editor = useContext(EditorContext);
   const [objects, setObjects] = useState<IObject[]>([]);
   const [selectedIds, setSelectedIds] = useState(new Set<string>());
-
+  const foundIndex = objects.findIndex((obj) => selectedIds.has(obj.id));
+  localStorage.setItem('foundIndex', `${foundIndex}`);
   useEffect(() => {
     if (editor) {
-      console.log(editor,'editor111')
       setObjects(editor.sceneGraph.getObjects()); // init
 
       editor.sceneGraph.on('render', () => {
@@ -22,6 +22,7 @@ export const LayerPanel: FC = () => {
   }, [editor]);
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+
     if (!editor) return;
     const target = event.target;
 
@@ -37,7 +38,7 @@ export const LayerPanel: FC = () => {
       }
     }
   };
-
+console.log(foundIndex,'foundIndex')
   return (
     <div className="layer-panel" onClick={(e) => handleClick(e)}>
       {/* {objects

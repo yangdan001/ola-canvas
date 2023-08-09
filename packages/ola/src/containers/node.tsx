@@ -99,7 +99,7 @@ export const Node = ({
         {state.isEditing ? (
           <RenameForm defaultValue={name} {...handlers} />
         ) : (
-          <span>
+          <span data-layer-id={data.id}>
             {name}{" "}
             {state.isSelected && (
               <button style={{ display: "inline" }} onClick={handlers.edit}>

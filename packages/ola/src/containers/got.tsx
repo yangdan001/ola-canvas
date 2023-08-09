@@ -32,7 +32,7 @@ export function GotLineage() {
             rowHeight={22}
             width={props.width}
             height={props.height}
-            onClick={() => console.log("clicked the tree")}
+            onClick={(e) => {console.log(e,"clicked the tree")}}
             onContextMenu={() => console.log("context menu the tree")}
             dndRootElement={undefined}
           >

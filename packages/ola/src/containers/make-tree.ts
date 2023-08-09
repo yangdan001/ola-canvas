@@ -4,12 +4,19 @@ export function makeTree(string: string, openByDefault: boolean) {
   const root = { id: "ROOT", name: "ROOT", isOpen: true };
   let prevNode = root;
   let prevLevel = -1;
-  let id = 1;
+  // let id = 1;
+  // let tag = 1;
+  const id = 1;
   string.split("\n").forEach((line) => {
-    const name = line.trimStart();
-    const level = line.length - name.length;
+    // const name = line.trimStart();
+    // const level = line.length - name.length;
+    const name = JSON.parse(line).name.trimStart();
+    const level = JSON.parse(line).name.length - name.length;
     const diff = level - prevLevel;
-    const node = { id: (id++).toString(), name, isOpen: openByDefault };
+    // const node = { id: (id++).toString(), name, isOpen: openByDefault };
+    const node = { id: JSON.parse(line).id.toString(), name, isOpen: openByDefault };
+
+    // const node = { tag: (tag++).toString(),id: JSON.parse(line).id.toString(), name, isOpen: openByDefault };
     if (diff === 1) {
       // First child
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment

@@ -98,6 +98,7 @@ export class SelectTool implements ITool {
       !isShiftPressing &&
       sceneGraph.isPointInSelectedBox(this.startPoint)
     ) {
+      console.log(11)
       this.currStrategy = this.strategyMove;
     } else {
       const topHitElement = sceneGraph.getTopHitElement(
@@ -106,6 +107,8 @@ export class SelectTool implements ITool {
       );
       // 2. 点中一个元素 （FIXME: 没考虑描边的情况）
       if (topHitElement) {
+      console.log(this.strategyMove,22)
+
         // 按住 shift 键的选中，添加或移除一个选中元素
         if (isShiftPressing) {
           // 延迟到鼠标释放时才将元素从选中元素中移出
