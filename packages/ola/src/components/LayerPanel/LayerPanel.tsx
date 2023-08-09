@@ -8,8 +8,6 @@ export const LayerPanel: FC = () => {
   const editor = useContext(EditorContext);
   const [objects, setObjects] = useState<IObject[]>([]);
   const [selectedIds, setSelectedIds] = useState(new Set<string>());
-  const foundIndex = objects.findIndex((obj) => selectedIds.has(obj.id));
-  localStorage.setItem('foundIndex', `${foundIndex}`);
   useEffect(() => {
     if (editor) {
       setObjects(editor.sceneGraph.getObjects()); // init
@@ -17,6 +15,10 @@ export const LayerPanel: FC = () => {
       editor.sceneGraph.on('render', () => {
         setObjects(editor.sceneGraph.getObjects());
         setSelectedIds(editor.selectedElements.getIdSet());
+        const selectedIdsSet: Set<string> = editor.selectedElements.getIdSet();
+        const selectedIdsArray: string[] = Array.from(selectedIdsSet);
+        const selectedIdsString: string = JSON.stringify(selectedIdsArray);
+        localStorage.setItem('selectedIds', selectedIdsString);
       });
     }
   }, [editor]);
@@ -38,7 +40,6 @@ export const LayerPanel: FC = () => {
       }
     }
   };
-console.log(foundIndex,'foundIndex')
   return (
     <div className="layer-panel" onClick={(e) => handleClick(e)}>
       {/* {objects

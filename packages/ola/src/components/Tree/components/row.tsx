@@ -1,4 +1,4 @@
-import React, { CSSProperties, useCallback, useMemo, useRef,useEffect } from "react";
+import React, { CSSProperties, useCallback, useMemo, useRef } from "react";
 import { useTreeApi } from "../context";
 import { useDragHook } from "../dnd/drag-hook";
 import { useDropHook } from "../dnd/drop-hook";
@@ -8,7 +8,6 @@ type Props = {
   style: CSSProperties;
   index: number;
 };
-// const foundIndex = localStorage.getItem('foundIndex') || '';
 const Row = React.memo(<T extends IdObj>({ index, style }: Props) => {
   const realTree = useTreeApi<T>();
   const tree = useMemo(() => realTree, []);
@@ -29,12 +28,7 @@ const Row = React.memo(<T extends IdObj>({ index, style }: Props) => {
   const isOverFolder = node.id === tree.cursorParentId && tree.cursorOverFolder;
   const isOpen = node.isOpen;
   const indent = tree.indent * node.level;
-  // useEffect(() => {
-  //   console.log(foundIndex,'foundIndex')
-  //   if(foundIndex!=''&&foundIndex!='-1'&&foundIndex!=null){
-  //     tree.select(parseInt(foundIndex), false, false,parseInt(foundIndex));
-  //   }
-  // }, [foundIndex])
+ 
   const state = useMemo(() => {
     return {
       isEditing,
