@@ -8,7 +8,7 @@ export const LayerPanel: FC = () => {
   const editor = useContext(EditorContext);
   const [objects, setObjects] = useState<IObject[]>([]);
   const [selectedIds, setSelectedIds] = useState(new Set<string>());
-
+  
   useEffect(() => {
     if (editor) {
       console.log(editor,'editor111')
@@ -37,7 +37,8 @@ export const LayerPanel: FC = () => {
       }
     }
   };
-
+  const foundIndex = objects.findIndex((obj) => selectedIds.has(obj.id));
+  localStorage.setItem('foundIndex', `${foundIndex}`);
   return (
     <div className="layer-panel" onClick={(e) => handleClick(e)}>
       {/* {objects

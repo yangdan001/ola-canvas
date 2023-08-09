@@ -8,12 +8,14 @@ type Props = {
   style: CSSProperties;
   index: number;
 };
-
+const foundIndex = localStorage.getItem('foundIndex') || '';
 const Row = React.memo(<T extends IdObj>({ index, style }: Props) => {
   const realTree = useTreeApi<T>();
   const tree = useMemo(() => realTree, []);
   tree.sync(realTree);
-
+  if(foundIndex!=''&&foundIndex!='-1'){
+    tree.select(parseInt(foundIndex), false, false,parseInt(foundIndex));
+  }
   const node = tree.visibleNodes[index];
   const prev = tree.visibleNodes[index - 1] || null;
   const next = tree.visibleNodes[index + 1] || null;
