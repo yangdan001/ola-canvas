@@ -3,7 +3,7 @@ import { EditorContext } from '../../context';
 import { IObject } from '../../type';
 import LayerItem from './LayerItem/LayerItem';
 import './LayerPanel.scss';
-import Example from "../../containers/example";
+import MenuTree from "../menuTree";
 export const LayerPanel: FC = () => {
   const editor = useContext(EditorContext);
   const [objects, setObjects] = useState<IObject[]>([]);
@@ -54,7 +54,8 @@ export const LayerPanel: FC = () => {
           </LayerItem>
         ))
         .reverse()} */}
-        <Example />
+        {/* <Example /> */}
+        <MenuTree/>
     </div>
   );
 };

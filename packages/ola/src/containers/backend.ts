@@ -7,7 +7,7 @@ function findById(node: any, id: string): TreeModel.Node<any> | null {
 }
 
 const initData = lineage;
-
+console.log(initData,'initData9999')
 export type MyData = {
   id: string;
   isOpen: boolean;

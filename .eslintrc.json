@@ -9,6 +9,7 @@
   "plugins": ["@typescript-eslint", "react", "react-hooks"],
   "parser": "@typescript-eslint/parser",
   "rules": {
+    "no-unused-vars": "off",
     // 缩进
     // "indent": ["error", 2, { "SwitchCase": 1 }],
     // // 必须使用分号
@@ -44,34 +45,34 @@
     // --------- TypeScript 相关 ---------------
     // TS 的一些规则和 ESLint 自身的规则有重复，注意处理（把 ESLint 相同的规则 off）
     // 不能有未使用的变量
-    "@typescript-eslint/no-unused-vars": "warn",
+    // "@typescript-eslint/no-unused-vars": "warn",
     // class、enum 等使用大驼峰风格
-    "@typescript-eslint/naming-convention": [
-      "warn",
-      {
-        "selector": "typeLike",
-        "format": ["PascalCase"]
-      }
-    ],
-    "@typescript-eslint/no-non-null-assertion": 0,
-    "@typescript-eslint/no-explicit-any": 0, // 允许使用 any
+    // "@typescript-eslint/naming-convention": [
+    //   "warn",
+    //   {
+    //     "selector": "typeLike",
+    //     "format": ["PascalCase"]
+    //   }
+    // ],
+    // "@typescript-eslint/no-non-null-assertion": 0,
+    "@typescript-eslint/no-explicit-any": 0 // 允许使用 any
 
     // -------- React 相关 --------------
     // jsx 如果有多行，用括号包裹，且括号独自一行
-    "react/jsx-wrap-multilines": [
-      "warn",
-      {
-        "return": "parens-new-line"
-      }
-    ],
+    // "react/jsx-wrap-multilines": [
+    //   "warn",
+    //   {
+    //     "return": "parens-new-line"
+    //   }
+    // ],
     // props 后的 = 左右不能有空格符
-    "react/jsx-equals-spacing": ["error", "never"],
+    // "react/jsx-equals-spacing": ["error", "never"],
     // 如果 tag 下没有内容，需要用 <div /> 的形式
-    "react/self-closing-comp": [
-      "error",
-      {
-        "component": true
-      }
-    ]
+    // "react/self-closing-comp": [
+    //   "error",
+    //   {
+    //     "component": true
+    //   }
+    // ]
   }
 }
