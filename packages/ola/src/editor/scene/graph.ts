@@ -25,6 +25,8 @@ export interface GraphAttrs {
   strokeWidth?: number;
   // transform 相关
   rotation?: number;
+  parentId?: string;
+  children?: ITexture[];
 }
 
 export class Graph {
@@ -41,6 +43,8 @@ export class Graph {
   strokeWidth?: number;
   // transform
   rotation?: number;
+  parentId?: string;
+  children?: ITexture[];
   constructor(options: GraphAttrs) {
     this.type = options.type ?? this.type;
     this.id = options.id ?? genId();
@@ -83,6 +87,8 @@ export class Graph {
       stroke: this.stroke,
       strokeWidth: this.strokeWidth,
       rotation: this.rotation,
+      parentId: this.parentId,
+      children: this.children,
     };
   }
   setAttrs(attrs: Partial<GraphAttrs>) {

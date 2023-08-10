@@ -1,9 +1,11 @@
-import { IPoint } from '../../../type';
+import { IPoint,IRect } from '../../../type';
 import { noop } from '../../../utils/common';
 import { MoveElementsCommand } from '../../commands/move_elements';
 import { Editor } from '../../editor';
 import { IBaseTool } from '../type';
+// import { GraphType } from '../../../type';
 
+// import { ITexture } from '../../../editor/texture';
 /**
  * select tool
  *
@@ -103,14 +105,76 @@ export class SelectMoveTool implements IBaseTool {
 
     this.editor.sceneGraph.render();
   }
+  isRectangleFullyInside(rect1:IRect, rect2:IRect) {
+    return (
+      rect1.x >= rect2.x &&
+      rect1.y >= rect2.y &&
+      rect1.x + rect1.width <= rect2.x + rect2.width &&
+      rect1.y + rect1.height <= rect2.y + rect2.height
+    );
+  }
+  
   end(e: PointerEvent, isEnableDrag: boolean) {
-    const selectedElements = this.editor.selectedElements.getItems();
+    // this.isRectangleFullyInside()
+console.log(22)
+const graphs = this.editor.sceneGraph.children;
+const selectedElements = this.editor.selectedElements.getItems();
+// interface GraphObject {
+//   width: number;
+//   x: number;
+//   y: number;
+//   height: number;
+//   // Other properties if any
+// }
+// export interface GraphAttrs {
+//   type?: GraphType;
+//   id?: string;
+//   objectName?: string;
+//   x: number;
+//   y: number;
+//   width: number;
+//   height: number;
+//   // 颜色
+//   fill?: ITexture[];
+//   stroke?: ITexture[];
+//   strokeWidth?: number;
+//   // transform 相关
+//   rotation?: number;
+//   parentId?: string;
+//   children?: ITexture[];
+// }
+// const arr:GraphObject[] = []
+// const selectedarr:GraphObject[] = []
+// graphs.forEach((item)=>{
+//   arr.push({
+//     width:item.width,
+//     x:item.x,
+//     y:item.y,
+//     height:item.height,
+//   })
+// })
+// selectedElements.forEach((item)=>{
+//   selectedarr.push({
+//     width:item.width,
+//     x:item.x,
+//     y:item.y,
+//     height:item.height,
+//   })
+// })
+// arr.forEach((item)=>{
+//   selectedarr.forEach((selectedItem) => {
+//     this.isRectangleFullyInside(selectedItem, item);
+//     console.log(this.isRectangleFullyInside(selectedItem, item),item,';;;;;')
+// });
+// })
+console.log(graphs,'graphs888')
     if (selectedElements.length === 0 || !isEnableDrag) {
       // 移动的时候元素被删除了，或者撤销导致为空
       // TODO: 属性复原
       return;
     }
-
+    // eslint-disable-next-line no-debugger
+    debugger
     if (this.dx !== 0 || this.dy !== 0) {
       this.editor.commandManager.pushCommand(
         new MoveElementsCommand(

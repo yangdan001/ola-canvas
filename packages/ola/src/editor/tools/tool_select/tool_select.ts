@@ -107,8 +107,6 @@ export class SelectTool implements ITool {
       );
       // 2. 点中一个元素 （FIXME: 没考虑描边的情况）
       if (topHitElement) {
-      console.log(this.strategyMove,22)
-
         // 按住 shift 键的选中，添加或移除一个选中元素
         if (isShiftPressing) {
           // 延迟到鼠标释放时才将元素从选中元素中移出
@@ -150,8 +148,10 @@ export class SelectTool implements ITool {
     }
   }
   end(e: PointerEvent, isEnableDrag: boolean) {
+    // // eslint-disable-next-line no-debugger
+    // debugger
     const currStrategy = this.currStrategy;
-
+    console.log(currStrategy,11)
     if (this.editor.hostEventManager.isDraggingCanvasBySpace) {
       return;
     }
